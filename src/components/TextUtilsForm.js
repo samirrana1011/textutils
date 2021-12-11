@@ -48,21 +48,23 @@ export default function TextUtilsForm(props) {
                 <label htmlFor="myText" className="form-label">{props.heading}</label>
                 <textarea className="form-control" value={text} id="myText" rows="8" style={{backgroundColor: props.mode==='light'?'white':'grey',color:props.mode==='light'?'black':'white'}} onChange={HandleOnChnage}></textarea>
             </div>
-            <button className="btn btn-primary mx-2"  onClick={HandleClickEvent}>Convert to upper case</button>
-            <button className="btn btn-primary mx-2" onClick={HandleLowerClickEvent}>Convert to lower lower</button>
-            <button className="btn btn-primary mx-2" onClick={HandleRemoveExtraSpacesClickEvent}>Remove Extra Spaces</button>
+            <button disabled={text.length === 0} className="btn btn-primary mx-2 my-2"  onClick={HandleClickEvent}>Convert to upper case</button>
+            <button disabled={text.length === 0}  className="btn btn-primary mx-2 my-2" onClick={HandleLowerClickEvent}>Convert to lower lower</button>
+            <button disabled={text.length === 0}  className="btn btn-primary mx-2 my-2" onClick={HandleRemoveExtraSpacesClickEvent}>Remove Extra Spaces</button>
             
-            <button className="btn btn-success mx-2" onClick={HandleCopyClickEvent}>Copy to clipboard</button>
+            <button disabled={text.length === 0}  className="btn btn-success mx-2 my-2" onClick={HandleCopyClickEvent}>Copy to clipboard</button>
             {/* <button className="btn btn-success mx-2" onClick={HandlePasteClickEvent}>Paste Clipboard Data</button> */}
-            <button className="btn btn-danger mx-2" onClick={HandleClearClickEvent}>Clear</button>
+            <button disabled={text.length === 0}  className="btn btn-danger mx-2 my-2" onClick={HandleClearClickEvent}>Clear</button>
             
         </div>
         <div className="container my3" style={{color: props.mode==='light'?'black':'white'}}>
             <h2>Your text Summary</h2>
-            <p>{text === "" ?0: text.replace(/(^\s*)|(\s*$)/gi,"").replace(/[ ]{2,}/gi," ").replace(/\n /,"\n").split(" ").length } words and {text.length} characters.</p>
-            <p>{ 0.008 * text.split(" ").length } Mintues read.</p>
+            {/* <p>{text === "" ?0: text.replace(/(^\s*)|(\s*$)/gi,"").replace(/[ ]{2,}/gi," ").replace(/\n /,"\n").split(" ").length } words and {text.length} characters.</p> */}
+            <p>{text.split(" ").filter((element=>{return element.length!==0})).length } words and {text.length} characters.</p>
+           
+            <p>{ 0.008 * text.split(" ").filter((element=>{return element.length!==0})).length } Mintues read.</p>
             <h2>Preview</h2>
-            <p>{text.length>0?text:'Enter something to preview'}</p>
+            <p>{text.length>0?text:'Nothing to preview'}</p>
         </div>
         </>
     )

@@ -24,8 +24,17 @@ function App() {
         setAlert(null);
       }, 1500);
   }
-  const toggleMode=()=>
+  const removeBodyclass=()=>{
+    document.body.classList.remove('bg-primary');
+    document.body.classList.remove('bg-success');
+    document.body.classList.remove('bg-warning');
+    document.body.classList.remove('bg-light');
+    document.body.classList.remove('bg-dark');
+  }
+  const toggleMode=(element)=>
   {
+    removeBodyclass();
+    document.body.classList.add('bg-'+element);
     if(mode==='light')
     {
     setMode('dark');
@@ -67,7 +76,7 @@ function App() {
    <div className="container my-3" >
        
         <Routes>
-         <Route exact path='/Abouts' element={<Abouts/>} />
+         <Route exact path='/Abouts' element={<Abouts mode={mode}/>} />
          <Route  exact path='/'element={
           <TextUtilsForm heading="Enter The Text to ananlyze below"  mode={mode} showAlert={showAlert} />
          }>

@@ -7,12 +7,16 @@ function Alert(props) {
         return lower.charAt(0).toUpperCase()+lower.slice(1);
     }
     return (
-       props.alert &&  <div>
-           <div className='container my-3'>   
+
+        <div style={{height: 50}}>
+      { props.alert &&  
+                <div>
+            
                 <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
                 <strong>{capitalize(props.alert.type)} </strong>{props.alert.messgae}
                 </div>
-            </div>      
+               
+        </div>}
         </div>
     )
 }
