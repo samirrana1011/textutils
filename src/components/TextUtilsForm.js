@@ -60,7 +60,7 @@ export default function TextUtilsForm(props) {
         <div className="container my3" style={{color: props.mode==='light'?'black':'white'}}>
             <h2>Your text Summary</h2>
             {/* <p>{text === "" ?0: text.replace(/(^\s*)|(\s*$)/gi,"").replace(/[ ]{2,}/gi," ").replace(/\n /,"\n").split(" ").length } words and {text.length} characters.</p> */}
-            <p>{text.split(" ").filter((element=>{return element.length!==0})).length } words and {text.length} characters.</p>
+            <p>{text.split(/\s+/).filter((element=>{return element.length!==0})).length } words and {text.length} characters.</p>
            
             <p>{ 0.008 * text.split(" ").filter((element=>{return element.length!==0})).length } Mintues read.</p>
             <h2>Preview</h2>
